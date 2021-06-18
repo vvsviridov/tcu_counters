@@ -12,7 +12,7 @@ COUNTERS = []
 def parser(xmlstring):
     tree = etree.fromstring(xmlstring)
     counters = tree.xpath(
-        '//mv[./moid/text()="EthernetInterface=WAN"]/r/text()'
+        '//mv[./moid/text()="EthernetInterface=1"]/r/text()'
     )
     rop_time = tree.xpath('//cbt/text()')[0]
     csv_time = datetime.datetime.strptime(rop_time, '%Y%m%d%H%M')
@@ -27,7 +27,7 @@ def utilization():
 
 
 def main():
-    files = glob.glob('./TCU_PM0798/*.gz')
+    files = glob.glob('./TCU_/*.gz')
     files.sort()
     for file in files:
         unzipped = gzip.open(file, 'rb')
